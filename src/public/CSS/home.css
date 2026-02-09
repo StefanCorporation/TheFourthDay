@@ -1,0 +1,93 @@
+body, html { height: 100%; margin: 0; overflow-x: hidden; }
+.section {
+  height: 100vh;          /* каждая секция на весь экран */
+  position: relative;
+  overflow: hidden;
+}
+.bg-image {
+  position: absolute;
+  inset: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+
+
+.content { 
+  position: relative; 
+  z-index: 5; color: rgb(0, 0, 0); 
+
+ }
+
+
+.content-1 { 
+  position: relative; 
+  z-index: 5; color: rgb(0, 0, 0); 
+  display: flex;
+  justify-content: center;
+ }
+ 
+
+
+#clouds {
+  position: absolute;
+  inset: 0;                   /* top:0; left:0; right:0; bottom:0; → растягивает на всю секцию */
+  width: 100%;
+  height: 100%;
+  pointer-events: none;       /* клики проходят сквозь облака к тексту */
+  z-index: 1;                 /* облака над фоном, но под контентом */
+}
+
+
+
+/* INTRO */
+.intro {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* canvas с пылью */
+#particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0; /* ← важно */
+}
+
+#intro-text {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(26px, 5vw, 72px);
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+/* буквы */
+.intro-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  background: linear-gradient(
+    180deg,
+    #fff9d6,
+    #ffd700,
+    #b8860b
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow:
+    0 0 10px rgba(255,215,0,.4),
+    0 0 25px rgba(255,215,0,.25);
+}

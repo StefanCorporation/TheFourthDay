@@ -20,6 +20,15 @@ app.get('/', async (req, res) => {
 })
 
 
+app.get('/home', async (req, res) => {
+    res.render('home.ejs')
+})
+
+
+app.get('/lens', (req, res) => {
+    res.render('lens.ejs')
+})
+
 
 app.listen(port, () => {
     console.log(`Server listening in ${port} port!`)

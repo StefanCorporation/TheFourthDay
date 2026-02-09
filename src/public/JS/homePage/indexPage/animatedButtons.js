@@ -108,7 +108,7 @@ function fadeOutIntro() {
 }
 
 document.querySelectorAll(".btn").forEach(btn => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", function() {
     const rect = btn.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
@@ -119,11 +119,13 @@ document.querySelectorAll(".btn").forEach(btn => {
       comet = new Comet(x, y);
     }
 
-    if (btn.dataset.sound === "on") {
-      console.log("🔊 Sound ON");
-    } else {
-      console.log("🔇 Sound OFF");
-    }
+    const sound = this.dataset.sound;
+    console.log(sound === "on" ? "🔊 Sound ON" : "🔇 Sound OFF");
+
+
+    setTimeout(() => {
+      window.location.href = `/home?sound=${sound}`;
+    }, 800); 
   });
 });
 
