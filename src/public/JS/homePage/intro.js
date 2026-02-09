@@ -71,17 +71,7 @@ const tl = gsap.timeline({
 /* 1. Чёрный экран — пауза */
 tl.to({}, { duration: 1.5 })
 
-/* 2. Появляются звёзды */
-.to("#particles", {
-  opacity: 1,
-  duration: 2,
-  ease: "power2.out"
-})
-
-/* 3. Небольшая пауза */
-.to({}, { duration: 0.8 })
-
-/* 4. Появление текста по буквам */
+/* 2. Появление текста по буквам */
 .to(".intro-letter", {
   opacity: 1,
   y: 0,
@@ -90,7 +80,7 @@ tl.to({}, { duration: 1.5 })
   stagger: 0.06
 })
 
-/* 5. «Оживление» свечения текста */
+/* 3. Свечение текста */
 .to(".intro-letter", {
   backgroundPosition: "100% 0%",
   textShadow: `
@@ -102,6 +92,16 @@ tl.to({}, { duration: 1.5 })
   ease: "sine.inOut"
 })
 
+/* 4. Небольшая пауза */
+.to({}, { duration: 0.6 })
+
+/* 5. Появляются звёзды */
+.to("#particles", {
+  opacity: 1,
+  duration: 2,
+  ease: "power2.out"
+})
+
 /* 6. Исчезновение интро */
 .to(".intro", {
   opacity: 0,
@@ -109,3 +109,4 @@ tl.to({}, { duration: 1.5 })
   ease: "power2.inOut",
   delay: 1
 });
+
