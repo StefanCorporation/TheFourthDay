@@ -92,21 +92,19 @@ tl.to({}, { duration: 1.5 })
   ease: "sine.inOut"
 })
 
-/* 4. Небольшая пауза */
-.to({}, { duration: 0.6 })
+/* 4. Появляется солнце */
+.to(".sun", { opacity: 1, scale: 1, duration: 1 })
+/* 5. Солнце улетает вправо */
+.to(".sun", { x: 500, opacity: 0, duration: 2, ease: "power2.inOut" })
 
-/* 5. Появляются звёзды */
-.to("#particles", {
-  opacity: 1,
-  duration: 2,
-  ease: "power2.out"
-})
+/* 6. Появляется луна */
+.to(".moon", { opacity: 1, scale: 1, duration: 1 })
+/* 7. Луна улетает влево */
+.to(".moon", { x: -500, opacity: 0, duration: 2, ease: "power2.inOut" })
 
-/* 6. Исчезновение интро */
-.to(".intro", {
-  opacity: 0,
-  duration: 1.8,
-  ease: "power2.inOut",
-  delay: 1
-});
+/* 8. Появляются звёзды */
+.to("#particles", { opacity: 1, duration: 2, ease: "power2.out" })
+
+/* 9. Исчезновение интро */
+.to(".intro", { opacity: 0, duration: 1.8, ease: "power2.inOut", delay: 0.5 });
 
