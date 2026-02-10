@@ -1,13 +1,15 @@
-const textEl = document.getElementById("intro-text");
-const text = textEl.innerText;
-textEl.innerHTML = "";
+document.querySelectorAll(".phrase").forEach(phrase => {
+  const text = phrase.textContent;
+  phrase.innerHTML = "";
 
-text.split("").forEach(c => {
-  const span = document.createElement("span");
-  span.className = "intro-letter";
-  span.innerHTML = c === " " ? "&nbsp;" : c;
-  textEl.appendChild(span);
+  text.split("").forEach(c => {
+    const span = document.createElement("span");
+    span.className = "intro-letter";
+    span.innerHTML = c === " " ? "&nbsp;" : c;
+    phrase.appendChild(span);
+  });
 });
+
 
 
 
@@ -68,43 +70,90 @@ const tl = gsap.timeline({
   }
 });
 
-/* 1. Чёрный экран — пауза */
-tl.to({}, { duration: 1.5 })
+// Пауза перед началом
+tl.to({}, { duration: 1.2 });
 
-/* 2. Появление текста по буквам */
-.to(".intro-letter", {
+/* =======================
+   ФРАЗА 1 — ДЕНЬ / СОЛНЦЕ
+======================= */
+tl.to(".phrase-1 .intro-letter", {
   opacity: 1,
   y: 0,
-  duration: 0.7,
-  ease: "power3.out",
-  stagger: 0.06
+  stagger: 0.05,
+  duration: 0.6,
+  ease: "power3.out"
 })
 
-/* 3. Свечение текста */
-.to(".intro-letter", {
-  backgroundPosition: "100% 0%",
-  textShadow: `
-    0 0 15px rgba(255,215,0,.6),
-    0 0 40px rgba(255,215,0,.4),
-    0 0 80px rgba(255,215,0,.2)
-  `,
-  duration: 1.5,
-  ease: "sine.inOut"
+.to({}, { duration: 0.6 }) // пауза
+
+.to(".sun", {
+  opacity: 1,
+  scale: 1,
+  duration: 1,
+  ease: "power2.out"
 })
 
-/* 4. Появляется солнце */
-.to(".sun", { opacity: 1, scale: 1, duration: 1 })
-/* 5. Солнце улетает вправо */
-.to(".sun", { x: 500, opacity: 0, duration: 2, ease: "power2.inOut" })
+.to(".sun", {
+  x: 600,
+  opacity: 0,
+  duration: 2,
+  ease: "power2.inOut"
+});
 
-/* 6. Появляется луна */
-.to(".moon", { opacity: 1, scale: 1, duration: 1 })
-/* 7. Луна улетает влево */
-.to(".moon", { x: -500, opacity: 0, duration: 2, ease: "power2.inOut" })
+/* =======================
+   ФРАЗА 2 — НОЧЬ / ЛУНА
+======================= */
+tl.to(".phrase-2 .intro-letter", {
+  opacity: 1,
+  y: 0,
+  stagger: 0.05,
+  duration: 0.6,
+  ease: "power3.out"
+})
 
-/* 8. Появляются звёзды */
-.to("#particles", { opacity: 1, duration: 2, ease: "power2.out" })
+.to({}, { duration: 0.6 })
 
-/* 9. Исчезновение интро */
-.to(".intro", { opacity: 0, duration: 1.8, ease: "power2.inOut", delay: 0.5 });
+.to(".moon", {
+  opacity: 1,
+  scale: 1,
+  duration: 1,
+  ease: "power2.out"
+})
+
+.to(".moon", {
+  x: -700,
+  opacity: 0,
+  duration: 2,
+  ease: "power2.inOut"
+});
+
+/* =======================
+   ФРАЗА 3 — ЗВЁЗДЫ
+======================= */
+tl.to(".phrase-3 .intro-letter", {
+  opacity: 1,
+  y: 0,
+  stagger: 0.05,
+  duration: 0.6,
+  ease: "power3.out"
+})
+
+.to("#particles", {
+  opacity: 1,
+  duration: 2,
+  ease: "power2.out"
+});
+
+/* =======================
+   УХОД ИНТРО
+======================= */
+tl.to(".intro", {
+  opacity: 0,
+  duration: 2,
+  delay: 0.8,
+  ease: "power2.inOut"
+});
+
+
+
 
