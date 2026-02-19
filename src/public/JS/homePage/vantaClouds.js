@@ -5,5 +5,6 @@ VANTA.CLOUDS({
   gyroControls: false,
   minHeight: 200.00,
   minWidth: 200.00,
-  speed: 0.50
+  speed: 0.70,
+  skyColor: 0xbabff
 })
