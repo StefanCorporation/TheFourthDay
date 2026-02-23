@@ -15,51 +15,46 @@ document.querySelectorAll(".phrase").forEach(phrase => {
 // РАЗБИВКА ТЕКСТА В СЕКЦИИ 1
 // =======================
 function splitText(el) {
-  if (!el) return;
-  const text = el.textContent;
+  let text = el.textContent
+    .replace(/\s+/g, " ")   // убираем лишние переносы и пробелы
+    .trim();                // убираем пробелы по краям
+
   el.innerHTML = "";
-  text.split("").forEach(char => {
+
+  for (let char of text) {
     const span = document.createElement("span");
     span.className = "intro-letter";
-    span.innerHTML = char === " " ? "&nbsp;" : char;
+    span.textContent = char;
     el.appendChild(span);
-  });
+  }
 }
 
-// Применяем
-splitText(document.getElementById("section-text"));
-splitText(document.getElementById("section-text-2"));
+// Инициализация объединённого текста
+function initBibleText() {
+  const container = document.getElementById("section-text-main");
+  if (!container) return;
+  
+  container.querySelectorAll(".verse").forEach(verse => {
+    splitText(verse);   // разбиваем каждый стих отдельно
+  });
+}
+initBibleText();   // вызываем один раз
 
 
 
-// =======================
-// АНИМАЦИЯ ТЕКСТА СЕКЦИИ 1 (для нормального и для скипа)
-// =======================
 function animateSectionText(skipped = false) {
-  gsap.to(".section", { 
-    autoAlpha: 1, 
-    duration: 1.2 
-  });
+  gsap.to(".section", { autoAlpha: 1, duration: 1.2 });
 
-  const delay1 = skipped ? 0.25 : 0.6;   // при скипе — почти сразу
-  const delay2 = skipped ? 1.4  : 2.8;   // второй текст тоже быстрее
+  const delay = skipped ? 0.22 : 0.75;  
 
-  gsap.to("#section-text .intro-letter", {
+  // Одна анимация на ВЕСЬ текст — появляется одновременно
+  gsap.to("#section-text-main .intro-letter", {
     opacity: 1,
     y: 0,
-    stagger: 0.028,
-    duration: 0.95,
+    stagger: 0.021,          // красивая единая волна
+    duration: 1.08,
     ease: "power3.out",
-    delay: delay1
-  });
-
-  gsap.to("#section-text-2 .intro-letter", {
-    opacity: 1,
-    y: 0,
-    stagger: 0.032,
-    duration: 0.9,
-    ease: "power3.out",
-    delay: delay2
+    delay: delay
   });
 
   ScrollTrigger.refresh();

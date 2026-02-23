@@ -1,0 +1,29 @@
+.bible-text {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.bible-text .verse {
+  font-size: clamp(1.38rem, 3.9vw, 2.45rem);   /* идеально адаптируется */
+  line-height: 1.2;
+  font-weight: 300;
+  margin-bottom: 2.6rem;
+  text-align: center;
+  color: #f8f6ed;
+  text-shadow: 0 4px 25px rgba(0,0,0,0.45);
+}
+
+.bible-text .verse:last-child {
+  margin-bottom: 0;
+  font-size: clamp(1.32rem, 3.6vw, 2.25rem);
+}
+
+/* Начальное состояние букв (чтобы анимация работала) */
+.intro-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(55px);
+  
+}
+
